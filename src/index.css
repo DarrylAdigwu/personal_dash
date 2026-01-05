@@ -11,6 +11,7 @@ body {
     background-size: cover;
     color: #ffffff;
     text-shadow: 0px 0px 20px #aaaaaa;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -28,4 +29,54 @@ div#top-section {
 
 h1 {
   align-self: center;
+  font-size: 3rem;
+}
+
+p {
+  margin: 0;
+}
+
+/* ==========
+  Crypto
+============= */
+#crypto {
+  font-size: 1.3rem;
+  text-shadow: 0px 0px 20px #aaaaaa;
+}
+
+#crypto-coin {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+#crypto-price {
+  padding: .5em .75em;
+
+}
+
+/* ==========
+  Weather
+============= */
+#weather {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 200px;
+  height: 100px;
+}
+
+#weather img {
+  width: 80px;
+}
+
+#weather-temp {
+  font-size: 2.25rem;
+  align-self: center;
+}
+
+#weather-city {
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
 }
