@@ -1,18 +1,16 @@
 // Fetch Background Image
-const getBackgroundImage = async () => {
-  try {
-    const response = await fetch(`https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature`);
-      if(!response.ok) {
-        throw new Error("Couldn't fetch background image")
-      }
-    const data = await response.json()
-    document.body.style.backgroundImage = `url(${data.urls.full})`;
-    document.getElementById("author").textContent = `By: ${data.user.first_name} ${data.user.last_name}`
-  } catch(err) {
-    console.error(err)
-    document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1447958374760-1ce70cf11ee3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Njc1MDU3NzF8&ixlib=rb-4.1.0&q=85)`
-    document.getElementById("author").textContent = `By: Andrew Coelho`
-  }
+try {
+  const response = await fetch(`https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature`);
+    if(!response.ok) {
+      throw new Error("Couldn't fetch background image")
+    }
+  const data = await response.json()
+  document.body.style.backgroundImage = `url(${data.urls.full})`;
+  document.getElementById("author").textContent = `By: ${data.user.first_name} ${data.user.last_name}`
+} catch(err) {
+  console.error(err)
+  document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1447958374760-1ce70cf11ee3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Njc1MDU3NzF8&ixlib=rb-4.1.0&q=85)`
+  document.getElementById("author").textContent = `By: Andrew Coelho`
 }
 
 // Fetch Crypto Data
@@ -54,29 +52,24 @@ const currentTime = () => {
     }).format(new Date());
 }
 
-
-const getWeather = async () => {
-  navigator.geolocation.getCurrentPosition(async (position) => {
-    try {
-      const response = await fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`);
-        if(!response.ok) {
-          throw new Error("Error get weather data")
-        }
-      const data = await response.json()
-      console.log(data)
+// Get current weather using OpenWeather API
+navigator.geolocation.getCurrentPosition(async (position) => {
+  try {
+    const response = await fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`);
+      if(!response.ok) {
+        throw new Error("Error get weather data")
+      }
+    const data = await response.json();
       document.getElementById("weather").innerHTML = `
       <img src=https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png />
       <p id="weather-temp">${Number(data.main.temp).toFixed(0)}&deg;</p>
       <p id="weather-city">${data.name}</p>
       `
-    } catch(err) {
-      console.error(err);
-    }
-  })
-}
+  } catch(err) {
+    console.error(err);
+  }
+})
 
 // Functions
-getBackgroundImage();
-currentTime()
-setInterval(currentTime, 1000)
-getWeather()
+currentTime();
+setInterval(currentTime, 1000);
